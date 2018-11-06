@@ -37,3 +37,58 @@ def load_sound(name):
         raise SystemExit(str(geterror()))
     return sound
 
+def main():
+
+#Initialize Everything
+    pygame.init()
+    screen = pygame.display.set_mode((1080, 720))
+    pygame.display.set_caption('Redesigned Adventure')
+    pygame.mouse.set_visible(1)
+
+#Create The Backgound
+    background = pygame.Surface(screen.get_size())
+    background = background.convert()
+    background.fill((250, 250, 250))
+
+#Put Text On The Background, Centered
+    if pygame.font:
+        font = pygame.font.Font(None, 36)
+        text = font.render("", 1, (10, 10, 10))
+        textpos = text.get_rect(centerx=background.get_width()/2)
+        background.blit(text, textpos)
+
+
+#Display The Background
+    screen.blit(background, (0, 0))
+    pygame.display.flip()
+
+#Prepare Game Objects
+    clock = pygame.time.Clock()
+    allsprites = pygame.sprite.RenderPlain(())
+
+
+
+#Main Loop
+    going = True
+    while going:
+        clock.tick(60)
+
+        #Handle Input Events
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                going = False
+
+        allsprites.update()
+
+        #Draw Everything
+        screen.blit(background, (0, 0))
+        allsprites.draw(screen)
+        pygame.display.flip()
+
+    pygame.quit()
+
+#Game Over
+
+#this calls the 'main' function when this script is executed
+if __name__ == '__main__':
+    main()
