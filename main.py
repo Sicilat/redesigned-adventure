@@ -85,6 +85,7 @@ def main():
         allsprites.draw(screen)
         pygame.display.flip()
 
+    print ("Quit")
     pygame.quit()
 
 #Game Over
